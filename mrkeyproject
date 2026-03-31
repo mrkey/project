@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirko Cataudo - Progettista e Appassionato del Legno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3d2817;
+            --primary-light: #5c3d2e;
+            --secondary: #e8dcc8;
+            --accent: #2d5016;
+            --background: #fafaf8;
+            --card-bg: #f5f1eb;
+            --text: #1a1a1a;
+            --text-light: #666666;
+            --border: #e0d5c7;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 248, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--background) 0%, var(--card-bg) 100%);
+            padding-top: 80px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: transparent;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: none;
+            box-shadow: 0 10px 30px rgba(61, 40, 23, 0.1);
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            animation: titleFloat 2s ease-in-out infinite;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: #1f3d0f;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        section:nth-child(odd) {
+            background: var(--background);
+        }
+
+        section:nth-child(even) {
+            background: var(--card-bg);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+            animation: titleFloat 2s ease-in-out infinite;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(61, 40, 23, 0.1);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Passions */
+        .passion-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .passion-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(61, 40, 23, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Contact Info */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-item h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Quotation Steps */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .step h3 {
+            margin-top: 1rem;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 0;
+        }
+
+        .disclaimer-legale {
+            max-width: 800px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.85rem;
+            color: #d1d1d1;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul { gap: 1rem; font-size: 0.9rem; }
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 2rem; }
+            .grid, .project-grid, .steps, .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#home" class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="ok.jpg" alt="MRKEY Project Logo" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;">
+                <span>MRKEY Project</span>
+            </a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Chi Sono</a></li>
+                <li><a href="#projects">Progetti</a></li>
+                <li><a href="#passions">Passioni</a></li>
+                <li><a href="#quotation">Idee</a></li>
+                <li><a href="#work-request">Contattami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="ok.jpg" alt="MRKEY Project Logo">
+                </div>
+                <h1>MRKEY PROJECT</h1>
+                <p class="subtitle" style="font-size: 1rem; color: var(--text-light); margin-bottom: 2rem;">di Mirko Cataudo</p>
+                <p class="subtitle">Appassionato e Artigiano del Legno</p>
+                <p class="description">
+                    Specializzato in lavorazione del legno per pura passione per il design moderno. 
+                    Mi piace tantissimo progettare nuove idee ed elaborare concept moderni. 
+                    Questa vetrina è il mio spazio personale dove raccolgo le mie creazioni e i progetti amatoriali.
+                </p>
+                <a href="#work-request" class="btn">Parliamo di un Progetto</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Chi Sono</h2>
+            <p class="section-subtitle">Scopri la mia storia e la mia passione</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>🎓 La mia Passione</h3>
+                    <p>
+                        Affascinato dalla lavorazione del legno da sempre, dedico il mio tempo libero a questa arte artigianale. Continuo a sperimentare per esplorare nuove tecniche di design.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>🛠️ Le mie Tecniche</h3>
+                    <p>
+                        Studio l'uso di strumenti per la lavorazione del legno, design CAD e progettazione 3D per dare forma alle idee prima ancora di toccare la materia prima.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>💡 La mia Visione</h3>
+                    <p>
+                        Ogni creazione è un pezzo unico. Mi piace condividere idee con amici e familiari, trasformando semplici spunti in oggetti reali con precisione e tanta dedizione.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid" style="margin-top: 3rem;">
+                <div class="card">
+                    <h3>📍 Dove mi trovo</h3>
+                    <p>Catanzaro, Calabria</p>
+                </div>
+                <div class="card">
+                    <h3>📅 Esperienza</h3>
+                    <p>Anni di pratica da autodidatta nel settore della lavorazione del legno e del design amatoriale.</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 Obiettivo</h3>
+                    <p>Trasformare la mia più grande passione in progetti sempre più ambiziosi, preparandomi per il futuro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">La mia Vetrina</h2>
+            <p class="section-subtitle">Scopri alcune delle mie creazioni più recenti</p>
+            
+            <div style="background: white; padding: 2rem; border-radius: 12px; border: 2px solid var(--primary); text-align: center; margin-bottom: 3rem;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Scopri Tutti i Miei Lavori su Instagram</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                    Visita la mia pagina Instagram @mrkeyproject per vedere la gallery completa di tutto ciò che realizzo nel mio laboratorio.
+                </p>
+                <a href="https://www.instagram.com/mrkeyproject/" target="_blank" class="btn btn-secondary" style="font-size: 1.1rem;">
+                    📸 Vai a @mrkeyproject
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="passions">
+        <div class="container">
+            <h2 class="section-title">Le Mie Passioni</h2>
+            <p class="section-subtitle">Quello che mi muove e mi ispira</p>
+            
+            <div class="grid">
+                <div class="card passion-card">
+                    <div class="passion-icon">🎮</div>
+                    <h3>Anime</h3>
+                    <p>Appassionato di anime e manga. Trovo ispirazione nelle storie e nei personaggi.</p>
+                </div>
+                <div class="card passion-card">
+                    <div class="passion-icon">🪵</div>
+                    <h3>Legno</h3>
+                    <p>La bellezza naturale del legno è la base di tutta la mia creatività.</p>
+                </div>
+                <div class="card passion-card">
+                    <div class="passion-icon">🔨</div>
+                    <h3>Lavorazione</h3>
+                    <p>Trasformare il legno grezzo in oggetti finiti è ciò che amo fare nel tempo libero.</p>
+                </div>
+                <div class="card passion-card">
+                    <div class="passion-icon">💪</div>
+                    <h3>Palestra</h3>
+                    <p>La palestra mi aiuta a mantenere la disciplina e l'energia per i miei progetti.</p>
+                </div>
+                <div class="card passion-card">
+                    <div class="passion-icon">👥</div>
+                    <h3>Amici</h3>
+                    <p>Il tempo passato con gli amici è prezioso e mi ispira a creare cose belle per loro.</p>
+                </div>
+                <div class="card passion-card">
+                    <div class="passion-icon">🌊</div>
+                    <h3>Mare</h3>
+                    <p>La serenità del mare mi rilassa e mi aiuta a trovare nuove idee creative.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quotation">
+        <div class="container">
+            <h2 class="section-title">Come Sviluppo un'Idea</h2>
+            <p class="section-subtitle">Ecco il processo creativo dietro le mie realizzazioni</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Chiacchierata</h3>
+                    <p>Ascolto l'idea, valuto gli spazi e immagino insieme il risultato finale.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Bozzetto</h3>
+                    <p>Creo schizzi e progetti dettagliati, unendo estetica e utilità pratica.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Ricerca Materiali</h3>
+                    <p>Valuto i tipi di legno, le finiture e la ferramenta più adatti al concept.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Valutazione</h3>
+                    <p>Condivido uno studio di fattibilità per capire l'impegno di tempo e risorse necessarie.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Lavorazione</h3>
+                    <p>Inizio a trasformare l'idea nel mio laboratorio amatoriale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work-request">
+        <div class="container">
+            <h2 class="section-title">Hai un'idea in mente?</h2>
+            <p class="section-subtitle">Scrivimi per discutere insieme di un progetto</p>
+            
+            <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border);">
+                <form id="workRequestForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-type">A cosa stavi pensando? *</label>
+                        <select id="project-type" name="project-type" required>
+                            <option value="">Seleziona un'opzione</option>
+                            <option value="furniture">Elemento d'arredo</option>
+                            <option value="doors">Infissi / Porte</option>
+                            <option value="kitchen">Zona Cucina</option>
+                            <option value="shelving">Libreria / Scaffale</option>
+                            <option value="decorative">Oggetto Decorativo</option>
+                            <option value="other">Altro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Raccontami la tua idea *</label>
+                        <textarea id="description" name="description" required placeholder="Descrivi il progetto che hai in mente..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Invia Messaggio</button>
+                </form>
+                <p style="margin-top: 1rem; text-align: center; color: var(--text-light); font-size: 0.9rem;">
+                    Ti risponderò al più presto per parlarne insieme.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Mirko Cataudo - Appassionato del Legno.</p>
+            
+            <div class="disclaimer-legale">
+                <strong>Nota Informativa:</strong> Questo sito web è un portfolio amatoriale, un diario personale creato esclusivamente per illustrare e condividere la passione per la lavorazione artigianale del legno. Non costituisce un'offerta al pubblico di servizi professionali, né la promozione di un'attività d'impresa abituale o organizzata. Eventuali progetti e realizzazioni pratiche sono da considerarsi hobbistica, collaborazioni occasionali o rivolte esclusivamente alla ristretta cerchia familiare e amicale, nel pieno rispetto delle normative vigenti (art. 5 D.P.R. 633/1972 - art. 71 D.lgs. 276/2003). Non si emettono preventivi commerciali né si effettua vendita diretta al pubblico tramite questa piattaforma.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('workRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Grazie! Il tuo messaggio è stato inviato.\nTi contatterò al più presto per parlarne insieme.');
+            this.reset();
+        });
+
+        // Aggiungi classe attiva al link di navigazione
+        window.addEventListener('scroll', function() {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
